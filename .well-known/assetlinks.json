@@ -2,8 +2,8 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "in.redbus.android",
+    "package_name": "com.recipe_app",
     "sha256_cert_fingerprints":
-    ["72:7B:C6:BA:CD:62:1D:FE:1E:3A:F6:41:14:07:8C:3E:37:DE:D3:37:50:13:3C:96:F0:4D:39:42:8E:52:74:FF"]
+    ["2B:62:7A:09:BC:7E:C4:55:8C:BE:65:B8:AF:B9:62:88:AA:83:01:DB:CC:14:E8:F2:23:00:31:1D:DC:48:A6:9E"]
   }
 }]
