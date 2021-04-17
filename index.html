@@ -1,7 +1,139 @@
-Welcome to my recipes!
+<html>
+ <head>
+   <title>Grade Calculater</title>
+ </head>
+ <style>
+#demo {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  display: none;
+  padding: 4px
+}
+</style>
+ <body>
+   
+   <form>
+     <label for="selector1"> <!-- Can add label if want -->
+      <p>Indian Economy-II &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       <select id="selector1.1"> <!-- Use "select" to create object -->
+         <option>O</option> <!-- Add all applicable options -->
+         <option>A+</option>
+         <option>A</option> 
+          <option>B+</option> <!-- Add all applicable options -->
+         <option>B</option>
+         <option>C</option><!-- add selected to change default from first option -->
+         <option>D</option>  
+       </select></p>
+     </label><br>
+       <label for="selector2"> <!-- Can add label if want -->
+      <p>Development Economics-II&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  
+       <select id="selector2.2"> <!-- Use "select" to create object -->
+         <option>O</option> <!-- Add all applicable options -->
+         <option>A+</option>
+         <option>A</option> 
+          <option>B+</option> <!-- Add all applicable options -->
+         <option>B</option>
+         <option>C</option><!-- add selected to change default from first option -->
+         <option>D</option>  
+       </select></p>
+     </label><br>
+      <label for="selector3"> <!-- Can add label if want -->
+      <p>Discipline Specific Elective (DSE) Course-III &nbsp; &nbsp; &nbsp;
+       <select id="selector3.3"> <!-- Use "select" to create object -->
+         <option>O</option> <!-- Add all applicable options -->
+         <option>A+</option>
+         <option>A</option> 
+          <option>B+</option> <!-- Add all applicable options -->
+         <option>B</option>
+         <option>C</option><!-- add selected to change default from first option -->
+         <option>D</option>  
+       </select></p>
+     </label><br>
+      <label for="selector4"> <!-- Can add label if want -->
+      <p>Discipline Specific Elective (DSE) Course-IV &nbsp; &nbsp; &nbsp;
+       <select id="selector4.4"> <!-- Use "select" to create object -->
+         <option>O</option> <!-- Add all applicable options -->
+         <option>A+</option>
+         <option>A</option> 
+          <option>B+</option> <!-- Add all applicable options -->
+         <option>B</option>
+         <option>C</option><!-- add selected to change default from first option -->
+         <option>D</option>  
+       </select></p>
+     </label><br><br><br>
 
-<form action="welcome.html" >
-<input name="username" /><br/>
-<input type="password" name="password"/><br/>
-<input type="submit" ?>
-</form>
+     <label for="fname">CGPA till 4th SEM</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+  <input type="text" id="fname" name="fname" value="6.95"><br><br><br>
+
+   <label for="fname0"> <!-- Can add label if want -->
+      <p>Improved Grade (one 6 credit paper in 3rd SEM)&nbsp; &nbsp; 
+       <select id="fname0"> <!-- Use "select" to create object -->
+         <option>O</option> <!-- Add all applicable options -->
+         <option>A+</option>
+         <option>A</option> 
+          <option>B+</option> <!-- Add all applicable options -->
+         <option>B</option>
+         <option>C</option><!-- add selected to change default from first option -->
+         <option>D</option>  
+       </select></p>
+     </label><br><br>
+
+  <label for="fname">5th SEM SGPA (Predicted)</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+  <input type="text" id="fname1" name="fname" value="8"><br><br><br><br>
+
+       <input type="button" onclick="calculateCGPA()" value="Calculate">
+
+   </form>
+
+   <p id="demo"></p>
+
+ </body>
+
+ <script type="text/javascript">
+   function calculateCGPA(){
+    var x1 = document.getElementById('selector1.1').value;
+    var x2 = document.getElementById('selector2.2').value;
+    var x3 = document.getElementById('selector3.3').value;
+    var x4 = document.getElementById('selector4.4').value;
+    var x5 = document.getElementById('fname').value;
+    var x6 = document.getElementById('fname1').value;
+
+    var x12 = document.getElementById('fname0').value;
+
+    var x7 = x5 * 100
+    var x7New = x5 * 92
+    var x8 = x6 * 24
+    var x9 =  getGradePoints(x1)*6 + getGradePoints(x2)*6 + getGradePoints(x3)*6 + getGradePoints(x4)*6 ;
+    var x13 = getGradePoints(x12)*6-24
+    var x10 = (x7+x8+x9+x13)/148
+    var x11 = (x7New + x8 + x9+x13)/140
+    var x14 = x9/24;
+    
+    document.getElementById("demo").style.display = "block";
+    document.getElementById("demo").innerHTML = "6th SEM SGPA is<b> " + x14+"</b>  & Final CGPA is <b>"+x10+"</b>" ;
+
+   }
+
+   function getGradePoints(grade){
+
+    if(grade == "O")
+      return 10;
+    else if(grade == "A+")
+      return 9;
+    else if(grade == "A")
+      return 8;
+    else if(grade == "B+")
+      return 7;
+    else if(grade == "B")
+      return 6;
+    else if(grade == "C")
+      return 5;
+    else if(grade == "D")
+      return 4;
+
+    return 0;
+
+   }
+ </script>
+</html>
