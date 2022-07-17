@@ -378,3 +378,10 @@ footer a:not(.nav-link) {
   .bg-primary {
     background-color: #474c54 !important;
   }
+
+  #borderdiv {
+    margin: auto;
+  width: 50%;
+  border-bottom: 1px solid rgb(3, 4, 3);
+  padding: 10px;
+ }
