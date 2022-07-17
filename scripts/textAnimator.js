@@ -84,7 +84,7 @@ var words = [
     "Computer science engineer","Mobile application developer","Clean architecture designing","Flask backend developer", "Cricket enthusiast :D"],
     part,
     i = 0,
-    offset = 40,
+    offset = 30,
     len = words.length,
     forwards = true,
     skip_count = 0,
