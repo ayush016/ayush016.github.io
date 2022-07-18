@@ -564,6 +564,9 @@ Documented many systems and applications to effectively train the new and existi
                 document.getElementById('interactive');
                 document.getElementById('load').style.visibility="hidden";
                 document.getElementById('content').style.visibility="visible";
+                if( /iPhone/i.test(navigator.userAgent) ) {
+                  document.querySelector("#firstLottie").stop()
+                }
               },1000);
           }
       }
