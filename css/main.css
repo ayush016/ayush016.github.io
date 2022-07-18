@@ -387,5 +387,6 @@ footer a:not(.nav-link) {
  }
 
  #cvDownload{
-  margin-left: 1em;
+  display: inline-block;
+  margin-left: 10px;
  }
