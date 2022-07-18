@@ -125,5 +125,8 @@ var wordflick = function () {
 };
 
 wordflick();
+$(window).load(function() {
+  $(".loader").fadeOut("slow");
+});
 
 //animate();
