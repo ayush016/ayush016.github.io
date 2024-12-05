@@ -1,0 +1,53 @@
+{
+    "size": {
+        "W": -200,
+        "H": 280,
+        "R": 1.4
+    },
+    "background": "#00FFFFFF",
+    "items": [
+        {
+            "data": "https://st.redbus.in/Images/IND_USP/18years.svg",
+            "offset": {
+                "X": 0,
+                "Y": 0
+            },
+            "size": {
+                "W": -200,
+                "H": 280,
+                "R": 1.4
+            },
+            "type": "IMAGE",
+            "position": "c",
+            "pos": "mc"
+        },
+        {
+            "data": "https://st.redbus.in/Images/IND_USP/18years_lottie.json",
+            "size": {
+                "W": 250,
+                "H": 24,
+                "R": 0
+            },
+            "offset": {
+                "X": 10,
+                "Y": 68
+            },
+            "type": "LOTTIE",
+            "pos": "tl",
+            "position": "tr"
+        },
+        {
+            "data": "18 years of trust in\nbus travel!",
+            "offset": {
+                "X": 16,
+                "Y": 100
+            },
+            "type": "TEXT",
+            "pos": "tl",
+            "position": "tr",
+            "fontType": "title1_b",
+            "textColor": "#1D1D1D",
+            "font": "title1B"
+        }
+    ]
+}
