@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check App Installation via Iframe</title>
+  <style>
+    #popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    // Flag that will be set if the page goes hidden
+    var appOpened = false;
+    
+    // Listen for visibility changes on the document
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === "hidden") {
+        appOpened = true;
+      }
+    });
+    
+    function checkAppInstallationWithIframe() {
+      // Create a hidden iframe to attempt loading the deep link
+      var iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = "intent://www.redbus.in/home#Intent;scheme=https;package=in.redbus.android;end";
+      document.body.appendChild(iframe);
+      
+      // After 1.5 seconds, check if the page went hidden (which suggests the app launched)
+      setTimeout(function() {
+        if (appOpened) {
+          // The page went hidden, so we assume the app is installed.
+          // When the user comes back, show the popup.
+          showPopup();
+        } else {
+          // No change in visibility: assume the app is not installed, so do nothing.
+          console.log("App not detected.");
+        }
+        // Remove the iframe (cleanup)
+        document.body.removeChild(iframe);
+      }, 1500);
+    }
+    
+    function showPopup() {
+      var popup = document.getElementById("popup");
+      if (popup) {
+        popup.style.display = "block";
+      }
+    }
+    
+    function openApp() {
+      // Attempt to launch the app again when user confirms
+      var intentURL = "intent://www.redbus.in/home#Intent;scheme=https;package=in.redbus.android;end";
+      window.location = intentURL;
+    }
+    
+    window.onload = checkAppInstallationWithIframe;
+  </script>
+</head>
+<body>
+  <div id="popup">
+    <p>It looks like you have the RedBus app installed. Do you want to open it?</p>
+    <button onclick="openApp()">Open App</button>
+    <button onclick="document.getElementById('popup').style.display='none'">Cancel</button>
+  </div>
+  <p>Welcome to our page.</p>
+</body>
+</html>
