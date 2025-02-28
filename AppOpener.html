@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open RedBus App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 1.1em;
+      color: #555;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function attemptOpenApp() {
+      // Use one of your deep links as defined in your manifest.
+      // For example, this deep link corresponds to an intent filter that handles "redbus://home".
+      var deepLink = "redbus://home"; 
+      
+      // Record the start time before attempting to open the app
+      var startTime = Date.now();
+      
+      // Try opening the app by changing the location
+      window.location = deepLink;
+      
+      // Use a timeout hack to determine if the app was launched
+      setTimeout(function () {
+        // If less than 2000ms has passed, the app likely did not open.
+        if (Date.now() - startTime < 2000) {
+          console.log("App not installed or did not open. Staying on the website.");
+          // Optionally, you could display a message or additional navigation here.
+        }
+      }, 1500);
+    }
+    
+    // Attempt to open the app when the page loads
+    window.onload = attemptOpenApp;
+  </script>
+</head>
+<body>
+  <h1>Welcome to RedBus</h1>
+  <p>If you have the RedBus app installed, it should open automatically.</p>
+  <p>If not, you can continue using our mobile website.</p>
+  <button onclick="attemptOpenApp();">Try Opening the App Again</button>
+</body>
+</html>
