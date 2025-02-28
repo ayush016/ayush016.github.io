@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check App Installation</title>
+  <style>
+    #popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 5px;
+    }
+  </style>
+  <script>
+    // Show the popup if the app is installed.
+    function showPopup() {
+      document.getElementById("popup").style.display = "block";
+    }
+    
+    // This function launches your app when the user clicks the "Open App" button.
+    function openApp() {
+      var packageName = "in.redbus.android";
+      var intentURL = "intent://www.redbus.in/home#Intent;scheme=https;package=" 
+                      + packageName 
+                      + ";end";
+      window.location = intentURL;
+    }
+    
+    // Check if the app is installed using the getInstalledRelatedApps API.
+    function checkIfAppInstalled() {
+      if (navigator.getInstalledRelatedApps) {
+        navigator.getInstalledRelatedApps().then(apps => {
+          console.log("Installed related apps:", apps);
+          // Look for an app with platform "play" and id "in.redbus.android".
+          const found = apps.some(app => app.platform === 'play' && app.id === 'in.redbus.android');
+          if (found) {
+            showPopup();
+          } else {
+            console.log("RedBus app is not installed.");
+          }
+        }).catch(err => {
+          console.error("Error checking installed related apps:", err);
+        });
+      } else {
+        console.log("navigator.getInstalledRelatedApps is not supported in this browser.");
+        // Optionally, you can fall back to another method here.
+      }
+    }
+    
+    // Run the check on page load.
+    window.onload = checkIfAppInstalled;
+  </script>
+</head>
+<body>
+  <div id="popup">
+    <p>It seems you have the RedBus app installed. Would you like to open it?</p>
+    <button onclick="openApp()">Open App</button>
+    <button onclick="document.getElementById('popup').style.display='none'">Cancel</button>
+  </div>
+  <p>Welcome to our page.</p>
+</body>
+</html>
