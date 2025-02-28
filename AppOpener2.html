@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open RedBus App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 1.1em;
+      color: #555;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function attemptOpenApp() {
+      // Your package name is in.redbus.android
+      var packageName = "in.redbus.android";
+      
+      // Construct an intent URL with the full URL "https://www.redbus.in/home"
+      var intentURL = "intent://www.redbus.in/home#Intent;scheme=https;package=" 
+                      + packageName 
+                      + ";S.browser_fallback_url=" 
+                      + encodeURIComponent(window.location.href) 
+                      + ";end";
+      
+      // Record start time for optional timeout check
+      var startTime = Date.now();
+      
+      // Create and simulate a click on a temporary anchor element
+      var anchor = document.createElement("a");
+      anchor.href = intentURL;
+      anchor.style.display = "none";
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+      
+      // Optional: Log if the app didn't open
+      setTimeout(function () {
+        if (Date.now() - startTime < 2000) {
+          console.log("App not installed or did not open; staying on the current page.");
+        }
+      }, 1500);
+    }
+  </script>
+</head>
+<body>
+  <h1>Welcome to RedBus</h1>
+  <p>If you have the RedBus app installed, it should open automatically.</p>
+  <p>If not, you will remain on this page.</p>
+  <button onclick="attemptOpenApp();">Try Opening the App Again</button>
+</body>
+</html>
