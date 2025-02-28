@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open RedBus App</title>
+
+  <script>
+    function attemptOpenApp() {
+      var packageName = "in.redbus.android";
+      
+      var intentURL = "intent://www.redbus.in/home#Intent;scheme=https;package=" 
+                      + packageName 
+                      + ";S.browser_fallback_url=" 
+                      + encodeURIComponent(window.location.href) 
+                      + ";end";
+      
+      var startTime = Date.now();
+      
+      var anchor = document.createElement("a");
+      anchor.href = intentURL;
+      anchor.style.display = "none";
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+      
+      setTimeout(function () {
+        if (Date.now() - startTime < 2000) {
+          console.log("App not installed or did not open; staying on the current page.");
+        }
+      }, 1500);
+    }
+    window.onload = attemptOpenApp;
+  </script>
+</head>
+<body>
+  <button onclick="attemptOpenApp();">Click here (if redBus installed open App otherwise do nothing)</button>
+</body>
+</html>
