@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Install Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .status {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Check If App Was Installed</h1>
+    <p>This page checks if the app was previously installed using cookies.</p>
+
+    <div id="install-status" class="status">Checking...</div>
+
+    <button onclick="setCookie()">Set Cookie</button>
+    <button onclick="deleteCookie()">Delete Cookie</button>
+    <button onclick="alertCookies()">Show Cookies</button>
+
+    <script>
+        // Function to set a cookie
+        function setCookie() {
+            document.cookie = "has_app_installed=true; Path=/; Max-Age=31536000; Secure; SameSite=Lax";
+            alert("Cookie has been set!");
+        }
+
+        // Function to delete the cookie
+        function deleteCookie() {
+            document.cookie = "has_app_installed=; Path=/; Max-Age=0";
+            alert("Cookie has been deleted!");
+        }
+
+        // Function to read all cookies and show them in an alert
+        function alertCookies() {
+            alert("Stored Cookies: " + document.cookie);
+        }
+
+        // Function to check if the app install cookie exists
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                const parts = cookies[i].split('=');
+                if (parts[0] === name) {
+                    return parts[1];
+                }
+            }
+            return null;
+        }
+
+        // Check on page load if the app install cookie is set
+        window.onload = function() {
+            const appInstalled = getCookie('has_app_installed');
+            if (appInstalled === 'true') {
+                document.getElementById("install-status").innerHTML = "✅ App was installed!";
+            } else {
+                document.getElementById("install-status").innerHTML = "❌ App not detected. Please install the app.";
+            }
+        }
+    </script>
+
+</body>
+</html>
